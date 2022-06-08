@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "alertifyjs": "^1.13.1",
+    "emailjs": "^4.0.0",
+    "requirejs": "^2.3.6"
+  }
+}

@@ -1,0 +1,20 @@
+body
+{
+    background-color: black ;
+}
+.button {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+p,h1,h2{
+    color: white;
+}
+
+.div label{
+    color: white; 
+}

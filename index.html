@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega Final</title>
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/themes/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/alertify.css" />
+    <link rel="stylesheet" href="node_modules/requirejs/require.js">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript"> emailjs.init('tyFhnQygiyNw-J2OV') </script>
+    
+    <body>
+    </body>
+</head>
+
+<body>
+    <button id="btnCargar" onclick="PaginaCargar()"> Agregar </button>
+    <button id="btnEditar" onclick="PaginaEditar()"> Editar </button>
+    <button id="btnEliminar" onclick="PaginaEliminar()"> Eliminar </button>
+    <button id="btnEnviar" onclick="PaginaEnviar()"> Enviar/Guardar </button>
+    <button id="btnOtros" onclick="PaginaOtros()"> Otros </button>
+
+
+    <h1 id="TituloPagina">Cargar Usuarios</h1>
+    
+    <h2>Juan Alvaro Elena</h2>
+    <div>
+        <p id="idAlumnoTexto"></p>
+        <input hidden type="text" id="idAlumnoCampo" /><br>
+
+        <p id="Text">Ingrese Nombre del alumno</p>
+        <input name="nombreAlumno" type="text" maxlength="512" id="inputText" /><br>
+
+        <p id="Text1">Ingrese apellido del alumno</p>
+        <input name="apellidoAlumno" type="text" maxlength="512" id="inputText1" /><br>
+
+        <p id="Text2">Ingrese nota del alumno</p>
+        <input name="notaAlumno" type="text" maxlength="512" id="inputText2" /><br>
+
+        <p id="mailAlumnoTexto">Ingrese mail del alumno</p>
+        <input id="mailAlumnoCampo" name="mailEnviar" type="text" maxlength="512" id="mailEnviar" /><br><br><br>
+
+        
+    
+        <button class="añadirAlumno" id="agregarAlumnos" onclick="AgregarAlumno()">Agregar Alumno</button>
+        <button class="editarAlumno" id="editarAlumno" onclick="EditarAlumno()">Editar Alumno</button>
+        <button class="editarAlumnoConfirmacion" id="editarAlumnoConfirmacion" onclick="editarAlumnoConfirmacion()">Confirmar editar</button>
+        <button class="añadirAlumno" id="EliminarAlumnos" onclick="EliminarAlumno()">Eliminar Alumno</button>
+
+        <button class="mostrarAlumnos" id="mostrarAlumnos" onclick="MostrarAlumnosHtml()">Mostrar alumnos</button>
+        <button class="mejorAlumnos" id="bestAlumno" onclick="EncontrarMejorAlumno()">Mejor alumno</button>
+        <button class="peorAlumnos" id="worstAlumno" onclick="EncontrarPeorAlumno()">Peor alumno</button>
+        <button class="promedioAlumnos" id="prodNotas" onclick="PromedioDeNotas()">Promedio de notas</button>
+
+        <button class="guardarAlumnos" id="guardarAlumnos" onclick="GuardarAlumnos()">Guardar Alumnos</button>
+        <button class="cargarAlumnos" id="cargarAlumnos" onclick="CargarAlumnos()">Cargar Alumnos</button>
+        <button class="hardcodeAlumnos" id="hardcodearAlumnos" onclick="HardcodeAlumnos()">hardcodeo de Alumnos</button>
+        <button class="enviarMail" id="enviarMail" onclick="EnviarEmail()">Enviar Mail</button>
+        <button class="descargarAlumnos" id="descargarUsuario" onclick="DescargarAlumnos()">Descargar Alumnos</button>
+ 
+    </div>
+    
+    <div>
+        <p id="resultado"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+    <script src="js/Alumno.js"></script>
+    <script src="js/index.js"></script>
+    
+    
+</body>
+</html>
