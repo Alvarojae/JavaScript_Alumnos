@@ -1,4 +1,3 @@
-
 const alumnosArray = new Alumnos();
 let id =0;
 
@@ -357,4 +356,3 @@ function ActivarCamposAgregarAlumno()
     document.getElementById("inputText1").style.display  = "inline";
     document.getElementById("inputText2").style.display  = "inline"; 
 }
-
