@@ -153,6 +153,7 @@ function EnviarEmail() {
         })
         .then(() => {
             alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
+            MostrarElementos(3);
         }, (err) => {
             alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
     });
