@@ -120,8 +120,8 @@ function HardcodeAlumnos()
 
 function GuardarAlumnos()
 {
-    f(alumnosArray.getLargo()==0)
-        alertify.notify('No hay alumnos para guardar' , 'error', 5, function(){  console.log(err); });
+    if(alumnosArray.getLargo()==0)
+        return alertify.notify('No hay alumnos para guardar' , 'error', 5, function(){  console.log(err); });
 
     const myJSON = JSON.stringify(alumnosArray);
     localStorage.setItem("Alumnos",myJSON);
