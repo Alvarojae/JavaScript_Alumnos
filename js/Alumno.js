@@ -77,6 +77,6 @@ class Alumno{
 
     getAlumno()
     {
-        return   "Id: "+ this.getId() +" - Nombre: "+ this.getNombre() + " " + this.getApellido() + " - Nota: " + this.getNota() +  "  <br>  ";
+        return   "Id: "+ this.getId() +" - Nombre: "+ this.getNombre() + " " + this.getApellido() + " - Nota: " + this.getNota() ;
     }
 };

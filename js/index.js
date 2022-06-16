@@ -43,7 +43,7 @@ function MostrarAlumnos()
     let alumnos="";
     let index;
     for (index = 0; index < alumnosArray.lista.length; index++) {
-        alumnos = alumnos + alumnosArray.lista[index].getAlumno();
+        alumnos = alumnos + alumnosArray.lista[index].getAlumno() +  "  <br>  ";
     }
     return alumnos;
 }
@@ -81,11 +81,10 @@ function EncontrarPeorAlumno()
         if (alumnosArray.lista[index].notas < minimo)
         {
             minimo = alumnosArray.lista[index].notas;
-            indice=index
+            indice=index;
         }
     }
     alertify.alert('El peor alumno es:', alumnosArray.lista[indice].getAlumno());
-
 }
 
 function EncontrarMejorAlumno()
@@ -121,10 +120,14 @@ function HardcodeAlumnos()
 
 function GuardarAlumnos()
 {
+    f(alumnosArray.getLargo()==0)
+        alertify.notify('No hay alumnos para guardar' , 'error', 5, function(){  console.log(err); });
+
     const myJSON = JSON.stringify(alumnosArray);
     localStorage.setItem("Alumnos",myJSON);
     console.log(myJSON);
     alertify.notify('Se guardo correctamente', 'success', 5, function(){  console.log('dismissed'); });
+
 }
 
 function CargarAlumnos()
@@ -134,7 +137,11 @@ function CargarAlumnos()
         id++;
         alumnosArray.agregarAlumno(new Alumno(arrayTest.lista[index].nombre,arrayTest.lista[index].apellido,arrayTest.lista[index].notas,id));
     }
-    alertify.notify('Se cargo correctamente', 'success', 5, function(){  console.log('dismissed'); });
+
+    if(alumnosArray.getLargo()==0)
+        alertify.notify('Error cargando lo alumnos' , 'error', 5, function(){  console.log(err); });  
+    else
+        alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){  console.log('dismissed'); });
 }
 
 //esta funcion llama al framework llamado MailJs y sirve para mandar mails 
@@ -145,42 +152,53 @@ function EnviarEmail() {
     if(document.getElementById("mailAlumnoCampo").value == "")
         return alertify.notify('No se completo la casilla "Ingresar mail"', 'error', 5, function(){  console.log('dismissed'); });
 
-    emailjs.send("service_8vmyxzh","template_1mxzo6p",{
-        from_name: "Alvaro Elena",
-        to_name: "User",
-        message: MostrarAlumnos(),
-        send_to: document.getElementById("mailAlumnoCampo").value,
-        })
-        .then(() => {
-            alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
-            MostrarElementos(3);
-        }, (err) => {
-            alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
-    });
+        let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
+
+        if(alumnoAux>=0)
+        {
+            alertify.confirm('Desea enviar este alumno?', alumnosArray.lista[alumnoAux].getAlumno(), 
+            function()
+            { 
+                emailjs.send("service_8vmyxzh","template_1mxzo6p",{
+                    from_name: "Alvaro Elena",
+                    to_name: "User",
+                    message: alumnosArray.lista[alumnoAux].getAlumno(),
+                    send_to: document.getElementById("mailAlumnoCampo").value,
+                    })
+                    .then(() => {
+                        alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
+                        MostrarElementos(3);
+                    }, (err) => {
+                        alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
+                });
+            }, 
+            function(){ alertify.error('se cancelo la enviacion del mail')});
+        }else
+        {
+            alertify.alert('Error','se cancelo la enviacion del mail');
+        }
+
+    
 }
 
 function DescargarAlumnos() {
     if(alumnosArray.getLargo()==0)
-    {
-        alertify.notify('No hay alumnos para guardar', 'error', 5, function(){  console.log('dismissed'); });
-    }
-    else
-    {
-        const jsonTest = MostrarAlumnos();
-        var a = document.createElement("a");
-        var file = new Blob([jsonTest]);
-        a.href = URL.createObjectURL(file);
-        a.download = "inventory.json";
-        a.click();
-        alertify.notify('Los Alumnos se descargaron correctamente', 'success', 5, function(){  console.log('dismissed'); });
-    }
+        return alertify.notify('No hay alumnos para guardar', 'error', 5, function(){  console.log('dismissed'); });
   
+    const jsonTest = MostrarAlumnos();
+    var a = document.createElement("a");
+    var file = new Blob([jsonTest]);
+    a.href = URL.createObjectURL(file);
+    a.download = "inventory.json";
+    a.click();
+    alertify.notify('Los Alumnos se descargaron correctamente', 'success', 5, function(){  console.log('dismissed'); });
+    
 }
 
 function EditarAlumno()
 {
     if(alumnosArray.getLargo()==0 )
-    return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
 
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
     if(alumnoAux>=0)
@@ -312,7 +330,6 @@ function MostrarElementos(dato)
     
     if(dato==0) //Cargar Alumnos
     {
-        
         ActivarCamposAgregarAlumno();
         
         document.getElementById("agregarAlumnos").style.display = "inline";
@@ -333,6 +350,8 @@ function MostrarElementos(dato)
         
     }else if(dato==3)//Enviar/guardar Alumnos
     {
+        document.getElementById("idAlumnoTexto").textContent = "Ingrese id del alumno que desea enviar";
+        document.getElementById("idAlumnoCampo").style.display  = "inline";
         document.getElementById("guardarAlumnos").style.display = "inline";
         document.getElementById("enviarMail").style.display = "inline";
         document.getElementById("descargarUsuario").style.display = "inline";
