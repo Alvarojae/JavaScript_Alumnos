@@ -215,6 +215,7 @@ function editarAlumnoConfirmacion()
             alumnosArray.lista[alumnoAux].setNombre(document.getElementById("inputText").value) ;
             alumnosArray.lista[alumnoAux].setApellido(document.getElementById("inputText1").value) ;
             MostrarElementos(1);
+            MostrarAlumnosHtml();
             alertify.success('Usuario Editado');
         }, 
         function(){ alertify.error('Se cancelo la Editacion del usuario')});
@@ -238,6 +239,7 @@ function EliminarAlumno()
             function()
             { 
                 alumnosArray.eliminarAlumno(alumnoAux);
+                MostrarAlumnosHtml();
                 alertify.success('Usuario eliminado');
             }, 
             function(){ alertify.error('Se cancelo la eliminacion del usuario')});
