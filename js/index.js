@@ -9,15 +9,14 @@ function AgregarAlumno()
     nombre = document.getElementById("inputText").value;
     apellido = document.getElementById("inputText1").value;
 
-    if(notas >0 && notas<11 && notas != NaN)
+    if(ValidarCampos() == 1)
     {
         id++;
         alumnosArray.agregarAlumno(new Alumno(nombre,apellido,notas,id))
         alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){  console.log('dismissed'); });
         LimpiarCampos();
     }
-    else 
-        alertify.alert('Error','La nota ingresada no es correcta');
+   
 }
 
 function LimpiarCampos()
@@ -28,15 +27,24 @@ function LimpiarCampos()
     document.getElementById("inputText2").value = "";
 }
 
-/*
+
 function ValidarCampos()
 {
-    parseInt(document.getElementById("notaAlumno").value);
-    document.getElementById("nombreAlumno").value;
-    document.getElementById("apellidoAlumno").value;
+    var regName = /^[ a-zA-Z\-\’]+$/;
+    var nombre = document.getElementById('inputText').value;
+    var apellido = document.getElementById('inputText1').value;
+    var nota = parseInt(document.getElementById('inputText2').value);
+    if(!regName.test(nombre))
+        return alertify.alert('Error','Ingrese un nombre correcto');
+    if(!regName.test(apellido))
+        return alertify.alert('Error','Ingrese un apellido correcto');
+    if(!(nota>= 1 && nota<=10))
+        return alertify.alert('Error','Ingrese una nota correcta');
+        
+    return 1;
 }
 
-*/
+
 
 function MostrarAlumnos()
 {
