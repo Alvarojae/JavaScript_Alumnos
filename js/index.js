@@ -16,7 +16,6 @@ function AgregarAlumno()
         alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){  console.log('dismissed'); });
         LimpiarCampos();
     }
-   
 }
 
 function LimpiarCampos()
@@ -122,6 +121,7 @@ function HardcodeAlumnos()
         id++;
         alumnosArray.agregarAlumno(new Alumno(nombres[index],apellidos[index],notasAlumnos[index],id));
     }
+
     if(index>0)
         alertify.alert('Exito','Se ingresaron alumnos Hardcodeadeados ');
 }
@@ -135,7 +135,6 @@ function GuardarAlumnos()
     localStorage.setItem("Alumnos",myJSON);
     console.log(myJSON);
     alertify.notify('Se guardo correctamente', 'success', 5, function(){  console.log('dismissed'); });
-
 }
 
 function CargarAlumnos()
@@ -152,7 +151,7 @@ function CargarAlumnos()
         alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){  console.log('dismissed'); });
 }
 
-//esta funcion llama al framework llamado MailJs y sirve para mandar mails 
+
 function EnviarEmail() {
     if(alumnosArray.getLargo()==0 )
         return alertify.notify('No hay alumnos para enviar', 'error', 5, function(){  console.log('dismissed'); });
@@ -160,31 +159,30 @@ function EnviarEmail() {
     if(document.getElementById("mailAlumnoCampo").value == "")
         return alertify.notify('No se completo la casilla "Ingresar mail"', 'error', 5, function(){  console.log('dismissed'); });
 
-        let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
+    let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
 
-        if(alumnoAux>=0)
-        {
-            alertify.confirm('Desea enviar este alumno?', alumnosArray.lista[alumnoAux].getAlumno(), 
-            function()
-            { 
-                emailjs.send("service_8vmyxzh","template_1mxzo6p",{
-                    to_name: alumnosArray.lista[alumnoAux].getNombre() + " " + alumnosArray.lista[alumnoAux].getApellido(),
-                    message: alumnosArray.lista[alumnoAux].getNota(),
-                    send_to: document.getElementById("mailAlumnoCampo").value,
-                    })
-                    .then(() => {
-                        alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
-                        MostrarElementos(3);
-                    }, (err) => {
-                        alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
-                });
-            }, 
-            function(){ alertify.error('se cancelo la enviacion del mail')});
-        }else
-        {
-            alertify.alert('Error','se cancelo la enviacion del mail');
-        }
-
+    if(alumnoAux>=0)
+    {
+        alertify.confirm('Desea enviar este alumno?', alumnosArray.lista[alumnoAux].getAlumno(), 
+        function()
+        { 
+            emailjs.send("service_8vmyxzh","template_1mxzo6p",{
+                to_name: alumnosArray.lista[alumnoAux].getNombre() + " " + alumnosArray.lista[alumnoAux].getApellido(),
+                message: alumnosArray.lista[alumnoAux].getNota(),
+                send_to: document.getElementById("mailAlumnoCampo").value,
+                })
+                .then(() => {
+                    alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
+                    MostrarElementos(3);
+                },(err) => {
+                    alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
+            });
+        }, 
+        function(){ alertify.error('se cancelo la enviacion del mail')});
+    }else
+    {
+        alertify.alert('Error','se cancelo la enviacion del mail');
+    }
     
 }
 
@@ -257,21 +255,21 @@ function EliminarAlumno()
     if(alumnosArray.getLargo()==0 )
         return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
 
-        let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
-        if(alumnoAux>=0)
-        {
-            alertify.confirm('Desea Eliminar este alumno?', alumnosArray.lista[alumnoAux].getAlumno(), 
-            function()
-            { 
-                alumnosArray.eliminarAlumno(alumnoAux);
-                MostrarAlumnosHtml();
-                alertify.success('Usuario eliminado');
-            }, 
-            function(){ alertify.error('Se cancelo la eliminacion del usuario')});
-        }else
-        {
-            alertify.alert('Error','Id ingresado no corresponde al alumno');
-        }
+    let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
+    if(alumnoAux>=0)
+    {
+        alertify.confirm('Desea Eliminar este alumno?', alumnosArray.lista[alumnoAux].getAlumno(), 
+        function()
+        { 
+            alumnosArray.eliminarAlumno(alumnoAux);
+            MostrarAlumnosHtml();
+            alertify.success('Usuario eliminado');
+        }, 
+        function(){ alertify.error('Se cancelo la eliminacion del usuario')});
+    }else
+    {
+        alertify.alert('Error','Id ingresado no corresponde al alumno');
+    }
 }
 
 
@@ -279,8 +277,8 @@ function PaginaCargar()
 {
     MostrarElementos(0);
     document.getElementById("TituloPagina").textContent = "Cargar Usuarios";
-
 }
+
 function PaginaEditar()
 {
     MostrarElementos(1);
@@ -346,14 +344,14 @@ function MostrarElementos(dato)
     }else if(dato==1) //Editar Alumnos
     {
         document.getElementById("editarAlumno").style.display = "inline";
-        document.getElementById("idAlumnoTexto").textContent = "Ingrese id del alumno";
+        document.getElementById("idAlumnoTexto").textContent = "Ingrese id del alumno que desea editar";
         document.getElementById("idAlumnoCampo").style.display  = "inline";
 
     }else if(dato==2) //Eliminar Alumnos
     {
         document.getElementById("EliminarAlumnos").style.display  = "inline";
         document.getElementById("idAlumnoCampo").style.display  = "inline";
-        document.getElementById("idAlumnoTexto").textContent = "Ingrese id del alumno";
+        document.getElementById("idAlumnoTexto").textContent = "Ingrese id del alumno que desea eliminar";
         
     }else if(dato==3)//Enviar/guardar Alumnos
     {
@@ -363,7 +361,7 @@ function MostrarElementos(dato)
         document.getElementById("enviarMail").style.display = "inline";
         document.getElementById("descargarUsuario").style.display = "inline";
 
-        document.getElementById("mailAlumnoTexto").textContent = "Ingresar Mail para enviar";
+        document.getElementById("mailAlumnoTexto").textContent = "Ingresar mail para enviar";
         document.getElementById("mailAlumnoCampo").style.display  = "inline";
     }else if(dato==4)//otros
     {

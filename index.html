@@ -17,71 +17,71 @@
     <script type="text/javascript"> emailjs.init('tyFhnQygiyNw-J2OV') </script>
     
     <body>
-        
         <!--<h2>Juan Alvaro Elena</h2>-->
     </body>
     
 </head>
 
     <body>
-        <div class="totalProgram">
-            <nav class="navbar" style="background-color: white;"> 
-                <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <h1 id="TituloPagina">Cargar Usuarios</h1>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="btnCargar" onclick="PaginaCargar()" >Agregar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="btnEditar" onclick="PaginaEditar()"> Editar </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="btnEliminar" onclick="PaginaEliminar()"> Eliminar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="PaginaEnviar" onclick="PaginaEnviar()"> Enviar/Guardar</a>
-                    </li>
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="PaginaOtros" onclick="PaginaOtros()"> Otros</a>
-                    </li>
-                    -->
-                    </ul>
-                </div>
-                </div>
-                
-            </nav>
-            
-            <div>
-                <div>
-                    <p id="idAlumnoTexto"></p>
-                    <input class="form-control" type="text" id="idAlumnoCampo" /><br>
-                </div>
+        <div class="fullBody">
+            <div class="totalProgram">
+                <nav class="navbar" style="background-color: white;"> 
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <h1 id="TituloPagina">Cargar Usuarios</h1>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="btnCargar" onclick="PaginaCargar()" >Agregar alumnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="btnEditar" onclick="PaginaEditar()">Editar alumnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="btnEliminar" onclick="PaginaEliminar()">Eliminar alumnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="PaginaEnviar" onclick="PaginaEnviar()">Enviar/Guardar alumnos</a>
+                            </li>
+                            <!--
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="PaginaOtros" onclick="PaginaOtros()"> Otros</a>
+                            </li>
+                            -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </nav>
                 
                 <div>
-                    <p id="Text">Ingrese Nombre del alumno</p>
-                    <input class="form-control" name="nombreAlumno" type="text" maxlength="512" id="inputText" /><br>
-                </div>
+                    <div>
+                        <p id="idAlumnoTexto"></p>
+                        <input class="form-control" type="text" id="idAlumnoCampo" /><br>
+                    </div>
+                    
+                    <div>
+                        <p id="Text">Ingrese nombre del alumno</p>
+                        <input class="form-control" name="nombreAlumno" type="text" maxlength="512" id="inputText" /><br>
+                    </div>
 
-                <div>
-                    <p id="Text1">Ingrese apellido del alumno</p>
-                    <input class="form-control" name="apellidoAlumno" type="text" maxlength="512" id="inputText1" /><br>
-                </div>
+                    <div>
+                        <p id="Text1">Ingrese apellido del alumno</p>
+                        <input class="form-control" name="apellidoAlumno" type="text" maxlength="512" id="inputText1" /><br>
+                    </div>
 
-                <div>
-                    <p id="Text2">Ingrese nota del alumno</p>
-                    <input class="form-control" name="notaAlumno" type="text" maxlength="512" id="inputText2" /><br>
-                </div>
+                    <div>
+                        <p id="Text2">Ingrese nota del alumno</p>
+                        <input class="form-control" name="notaAlumno" type="text" maxlength="512" id="inputText2" /><br>
+                    </div>
 
-                <div>
-                    <p id="mailAlumnoTexto">Ingrese mail del alumno</p>
-                    <input class="form-control" id="mailAlumnoCampo" name="mailEnviar" type="text" maxlength="512" id="mailEnviar" /><br><br><br>
+                    <div>
+                        <p id="mailAlumnoTexto">Ingrese mail del alumno</p>
+                        <input class="form-control" id="mailAlumnoCampo" name="mailEnviar" type="text" maxlength="512" id="mailEnviar" /><br><br><br>
+                    </div>
                 </div>
-            </div>
         </div>
 
         <div class="buttonProgram">
@@ -100,13 +100,11 @@
                 <button class="btn btn-light" id="hardcodearAlumnos" onclick="HardcodeAlumnos()">hardcodeo de Alumnos</button>
                 <button class="btn btn-light" id="enviarMail" onclick="EnviarEmail()">Enviar Mail</button>
                 <button class="btn btn-light" id="descargarUsuario" onclick="DescargarAlumnos()">Descargar Alumnos</button>
-    
             <div>
                 <p id="resultado"></p>
             </div>
-            
         </div>
-       
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" ></script>
         <script src="js/Alumno.js"></script>
         <script src="js/index.js"></script>

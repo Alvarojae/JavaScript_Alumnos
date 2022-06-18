@@ -20,10 +20,17 @@ h1{
 .div label{
     color: white; 
 }
+.fullBody{
+    width:100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .totalProgram{
-    height: auto;
-    width: 350px;
+
+    width: 300px;
     margin: 15px;
 }
 
@@ -31,7 +38,14 @@ h1{
     font-size: 25px;
    
 }
-
 .buttonProgram{
-    margin: 15px;
+    display: flex;
+    align-items: center;
+}
+.buttonProgram button{
+    margin: 4px;
+}
+
+.navbar{
+    border-radius: 10px;
 }
