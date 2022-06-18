@@ -168,9 +168,8 @@ function EnviarEmail() {
             function()
             { 
                 emailjs.send("service_8vmyxzh","template_1mxzo6p",{
-                    from_name: "Alvaro Elena",
-                    to_name: "User",
-                    message: alumnosArray.lista[alumnoAux].getAlumno(),
+                    to_name: alumnosArray.lista[alumnoAux].getNombre(),
+                    message: alumnosArray.lista[alumnoAux].getNota(),
                     send_to: document.getElementById("mailAlumnoCampo").value,
                     })
                     .then(() => {
