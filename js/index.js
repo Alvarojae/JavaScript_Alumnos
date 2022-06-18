@@ -168,7 +168,7 @@ function EnviarEmail() {
             function()
             { 
                 emailjs.send("service_8vmyxzh","template_1mxzo6p",{
-                    to_name: alumnosArray.lista[alumnoAux].getNombre(),
+                    to_name: alumnosArray.lista[alumnoAux].getNombre() + " " + alumnosArray.lista[alumnoAux].getApellido(),
                     message: alumnosArray.lista[alumnoAux].getNota(),
                     send_to: document.getElementById("mailAlumnoCampo").value,
                     })
