@@ -340,8 +340,6 @@ function MostrarElementos(dato)
         document.getElementById("agregarAlumnos").style.display = "inline"; 
         document.getElementById("cargarAlumnos").style.display = "inline"; 
         document.getElementById("hardcodearAlumnos").style.display = "inline";
-
-
     }else if(dato==1) //Editar Alumnos
     {
         document.getElementById("editarAlumno").style.display = "inline";

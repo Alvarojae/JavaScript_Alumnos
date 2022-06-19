@@ -52,3 +52,12 @@ h1{
 .navbar{
     border-radius: 10px;
 }
+
+.inputsProgram .form-control{
+    margin-bottom: 15px;  
+}
+
+
+.inputsProgram p{
+    padding-top: 8px;
+}
