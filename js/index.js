@@ -229,7 +229,10 @@ function EditarAlumno()
 function editarAlumnoConfirmacion()
 {   
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
-    if(alumnoAux>=0)
+    if(!(alumnoAux>=0))
+        return alertify.alert('Error','Id ingresado no corresponde al alumno');
+
+    if(ValidarCampos() == 1)
     {
         alertify.confirm('Cambiar valores del alumno?', 
         function()
@@ -242,9 +245,7 @@ function editarAlumnoConfirmacion()
             alertify.success('Usuario Editado');
         }, 
         function(){ alertify.error('Se cancelo la Editacion del usuario')});
-    }else
-    {
-        alertify.alert('Error','Id ingresado no corresponde al alumno');
+
     }
 
 
