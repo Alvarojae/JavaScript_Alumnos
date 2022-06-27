@@ -1,6 +1,9 @@
+//Variables
 const alumnosArray = new Alumnos();
 let id =0;
 
+
+//Funciones
 MostrarElementos(0);
 
 function AgregarAlumno()
@@ -226,7 +229,7 @@ function EditarAlumno()
     }
 }
 
-function editarAlumnoConfirmacion()
+function EditarAlumnoConfirmacion()
 {   
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
     if(!(alumnoAux>=0))
@@ -247,8 +250,6 @@ function editarAlumnoConfirmacion()
         function(){ alertify.error('Se cancelo la Editacion del usuario')});
 
     }
-
-
 }
 
 function EliminarAlumno()
@@ -371,8 +372,6 @@ function MostrarElementos(dato)
     }
 }
 
-
-
 function ActivarCamposAgregarAlumno()
 {
     document.getElementById("Text").textContent = "Ingrese Nombre del alumno";
@@ -383,3 +382,101 @@ function ActivarCamposAgregarAlumno()
     document.getElementById("inputText1").style.display  = "inline";
     document.getElementById("inputText2").style.display  = "inline"; 
 }
+
+
+//EventListeners
+
+const btnCargar = document.getElementById("btnCargar");
+btnCargar.addEventListener("click", function() {
+    PaginaCargar();
+});
+
+const btnEditar = document.getElementById("btnEditar");
+btnEditar.addEventListener("click", function() {
+    PaginaEditar();
+});
+
+const btnEliminar = document.getElementById("btnEliminar");
+btnEliminar.addEventListener("click", function() {
+    PaginaEliminar();
+});
+
+const btnEnviar = document.getElementById("btnEnviar");
+btnEnviar.addEventListener("click", function() {
+    PaginaEnviar();
+});
+
+
+const agregarAlumnos = document.getElementById("agregarAlumnos");
+agregarAlumnos.addEventListener("click", function() {
+    AgregarAlumno();
+});
+
+
+const editarAlumno = document.getElementById("editarAlumno");
+editarAlumno.addEventListener("click", function() {
+    EditarAlumno();
+});
+
+
+const editarAlumnoConfirmacion = document.getElementById("editarAlumnoConfirmacion");
+editarAlumnoConfirmacion.addEventListener("click", function() {
+    EditarAlumnoConfirmacion();
+});
+
+
+const EliminarAlumnos = document.getElementById("EliminarAlumnos");
+EliminarAlumnos.addEventListener("click", function() {
+    EliminarAlumno();
+});
+
+
+const mostrarAlumnos = document.getElementById("mostrarAlumnos");
+mostrarAlumnos.addEventListener("click", function() {
+    MostrarAlumnosHtml();
+});
+
+
+const bestAlumno = document.getElementById("bestAlumno");
+bestAlumno.addEventListener("click", function() {
+    EncontrarMejorAlumno();
+});
+
+const worstAlumno = document.getElementById("worstAlumno");
+worstAlumno.addEventListener("click", function() {
+    EncontrarPeorAlumno();
+});
+
+const prodNotas = document.getElementById("prodNotas");
+prodNotas.addEventListener("click", function() {
+    PromedioDeNotas();
+});
+
+const guardarAlumnos = document.getElementById("guardarAlumnos");
+guardarAlumnos.addEventListener("click", function() {
+    GuardarAlumnos();
+});
+
+const cargarAlumnos = document.getElementById("cargarAlumnos");
+cargarAlumnos.addEventListener("click", function() {
+    CargarAlumnos();
+});
+
+
+const hardcodearAlumnos = document.getElementById("hardcodearAlumnos");
+hardcodearAlumnos.addEventListener("click", function() {
+    HardcodeAlumnos();
+});
+
+
+
+const enviarMail = document.getElementById("enviarMail");
+enviarMail.addEventListener("click", function() {
+    EnviarEmail();
+});
+
+
+const descargarUsuario = document.getElementById("descargarUsuario");
+descargarUsuario.addEventListener("click", function() {
+    DescargarAlumnos();
+});

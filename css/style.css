@@ -29,19 +29,16 @@ h1{
 }
 
 .totalProgram{
-
     width: 300px;
     margin: 15px;
 }
 
 #TituloPagina{
     font-size: 25px;
-   
 }
 .buttonProgram{
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
