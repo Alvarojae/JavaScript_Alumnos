@@ -274,35 +274,40 @@ function EliminarAlumno()
     }
 }
 
+function CambiarNavPag(string)
+{
+    document.getElementById("TituloPagina").textContent = string;
+}
+
 
 function PaginaCargar()
 {
     MostrarElementos(0);
-    document.getElementById("TituloPagina").textContent = "Cargar Usuarios";
+    CambiarNavPag("Cargar Usuarios");
 }
 
 function PaginaEditar()
 {
     MostrarElementos(1);
-    document.getElementById("TituloPagina").textContent = "Editar Usuarios";
+    CambiarNavPag("Editar Usuarios");
 }
 
 function PaginaEliminar()
 {   
     MostrarElementos(2);
-    document.getElementById("TituloPagina").textContent = "Eliminar Usuarios";
+    CambiarNavPag("Eliminar Usuarios");
 }
 
 function PaginaEnviar()
 {
     MostrarElementos(3);
-    document.getElementById("TituloPagina").textContent = "Enviar Usuarios";
+    CambiarNavPag("Enviar Usuarios");
 }
 
 function PaginaOtros()
 {
     MostrarElementos(4);
-    document.getElementById("TituloPagina").textContent = "Otros";
+    CambiarNavPag("Otros");
 }
 
 function MostrarElementos(dato)
@@ -406,36 +411,30 @@ btnEnviar.addEventListener("click", function() {
     PaginaEnviar();
 });
 
-
 const agregarAlumnos = document.getElementById("agregarAlumnos");
 agregarAlumnos.addEventListener("click", function() {
     AgregarAlumno();
 });
-
 
 const editarAlumno = document.getElementById("editarAlumno");
 editarAlumno.addEventListener("click", function() {
     EditarAlumno();
 });
 
-
 const editarAlumnoConfirmacion = document.getElementById("editarAlumnoConfirmacion");
 editarAlumnoConfirmacion.addEventListener("click", function() {
     EditarAlumnoConfirmacion();
 });
-
 
 const EliminarAlumnos = document.getElementById("EliminarAlumnos");
 EliminarAlumnos.addEventListener("click", function() {
     EliminarAlumno();
 });
 
-
 const mostrarAlumnos = document.getElementById("mostrarAlumnos");
 mostrarAlumnos.addEventListener("click", function() {
     MostrarAlumnosHtml();
 });
-
 
 const bestAlumno = document.getElementById("bestAlumno");
 bestAlumno.addEventListener("click", function() {
@@ -468,13 +467,10 @@ hardcodearAlumnos.addEventListener("click", function() {
     HardcodeAlumnos();
 });
 
-
-
 const enviarMail = document.getElementById("enviarMail");
 enviarMail.addEventListener("click", function() {
     EnviarEmail();
 });
-
 
 const descargarUsuario = document.getElementById("descargarUsuario");
 descargarUsuario.addEventListener("click", function() {
