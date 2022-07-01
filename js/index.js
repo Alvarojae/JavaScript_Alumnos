@@ -2,7 +2,6 @@
 const alumnosArray = new Alumnos();
 let id =0;
 
-
 //Funciones
 MostrarElementos(0);
 
@@ -15,7 +14,8 @@ function AgregarAlumno()
     if(ValidarCampos() == 1)
     {
         id++;
-        alumnosArray.agregarAlumno(new Alumno(nombre,apellido,notas,id))
+        alumnosArray.addAlumno(new Alumno(nombre,apellido,notas,id))
+
         alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){  console.log('dismissed'); });
         LimpiarCampos();
     }
@@ -28,7 +28,6 @@ function LimpiarCampos()
     document.getElementById("inputText1").value= "";
     document.getElementById("inputText2").value = "";
 }
-
 
 function ValidarCampos()
 {
@@ -122,7 +121,7 @@ function HardcodeAlumnos()
     let index;
     for (index = 0; index < 3; index++) {
         id++;
-        alumnosArray.agregarAlumno(new Alumno(nombres[index],apellidos[index],notasAlumnos[index],id));
+        alumnosArray.addAlumno(new Alumno(nombres[index],apellidos[index],notasAlumnos[index],id));
     }
 
     if(index>0)

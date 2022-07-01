@@ -2,7 +2,7 @@ class Alumnos{
     constructor(){
         this.lista = [];
     }
-    agregarAlumno(alumno)
+    addAlumno(alumno)
     {
         this.lista.push(alumno);
     }
