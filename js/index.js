@@ -5,6 +5,12 @@ let id =0;
 //Funciones
 MostrarElementos(0);
 
+
+const agregarAlumnos = document.getElementById("agregarAlumnos");
+agregarAlumnos.addEventListener("click", function() {
+    AgregarAlumno();
+});
+
 function AgregarAlumno()
 {
     notas = parseInt(document.getElementById("inputText2").value);
@@ -21,31 +27,6 @@ function AgregarAlumno()
     }
 }
 
-function LimpiarCampos()
-{
-    document.getElementById("idAlumnoCampo").value= "";
-    document.getElementById("inputText").value= "";
-    document.getElementById("inputText1").value= "";
-    document.getElementById("inputText2").value = "";
-}
-
-function ValidarCampos()
-{
-    var regName = /^[ a-zA-Z\-\’]+$/;
-    var nombre = document.getElementById('inputText').value;
-    var apellido = document.getElementById('inputText1').value;
-    var nota = parseInt(document.getElementById('inputText2').value);
-    if(!regName.test(nombre))
-        return alertify.alert('Error','Ingrese un nombre correcto');
-    if(!regName.test(apellido))
-        return alertify.alert('Error','Ingrese un apellido correcto');
-    if(!(nota>= 1 && nota<=10))
-        return alertify.alert('Error','Ingrese una nota correcta');
-        
-    return 1;
-}
-
-
 
 function MostrarAlumnos()
 {
@@ -57,6 +38,11 @@ function MostrarAlumnos()
     return alumnos;
 }
 
+const mostrarAlumnos = document.getElementById("mostrarAlumnos");
+mostrarAlumnos.addEventListener("click", function() {
+    MostrarAlumnosHtml();
+});
+
 function MostrarAlumnosHtml()
 {
     if(alumnosArray.getLargo()==0 )
@@ -65,53 +51,18 @@ function MostrarAlumnosHtml()
     document.getElementById("resultado").innerHTML = MostrarAlumnos();
 }
 
-function PromedioDeNotas()
-{
-    if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
 
-    let total=0;
-    for (let index = 0; index < alumnosArray.lista.length; index++) {
-        total+=alumnosArray.lista[index].notas;
-    }
-    if(total!=NaN || total!=0)
-        alertify.alert('Alumnos','El promedio de notas es: ' + (total/alumnosArray.lista.length).toFixed(2));
-    
-}
 
-function EncontrarPeorAlumno()
-{
-    if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
 
-    let minimo=11;
-    let indice=0;
-    for (let index = 0; index < alumnosArray.lista.length; index++) {
-        if (alumnosArray.lista[index].notas < minimo)
-        {
-            minimo = alumnosArray.lista[index].notas;
-            indice=index;
-        }
-    }
-    alertify.alert('El peor alumno es:', alumnosArray.lista[indice].getAlumno());
-}
 
-function EncontrarMejorAlumno()
-{
-    if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
 
-    let maximo=0;
-    let indice=0;
-    for (let index = 0; index < alumnosArray.lista.length; index++) {
-        if (alumnosArray.lista[index].notas > maximo)
-        {
-            maximo = alumnosArray.lista[index].notas;
-            indice=index
-        }
-    }
-    alertify.alert('El mejor alumno es:', alumnosArray.lista[indice].getAlumno());
-}
+
+
+
+const hardcodearAlumnos = document.getElementById("hardcodearAlumnos");
+hardcodearAlumnos.addEventListener("click", function() {
+    HardcodeAlumnos();
+});
 
 function HardcodeAlumnos() 
 {
@@ -128,6 +79,11 @@ function HardcodeAlumnos()
         alertify.alert('Exito','Se ingresaron alumnos Hardcodeadeados ');
 }
 
+const guardarAlumnos = document.getElementById("guardarAlumnos");
+guardarAlumnos.addEventListener("click", function() {
+    GuardarAlumnos();
+});
+
 function GuardarAlumnos()
 {
     if(alumnosArray.getLargo()==0)
@@ -139,12 +95,17 @@ function GuardarAlumnos()
     alertify.notify('Se guardo correctamente', 'success', 5, function(){  console.log('dismissed'); });
 }
 
+const cargarAlumnos = document.getElementById("cargarAlumnos");
+cargarAlumnos.addEventListener("click", function() {
+    CargarAlumnos();
+});
+
 function CargarAlumnos()
 {
     const arrayTest = JSON.parse(localStorage.getItem("Alumnos"));
     for (let index = 0; index < arrayTest.lista.length; index++) {
         id++;
-        alumnosArray.agregarAlumno(new Alumno(arrayTest.lista[index].nombre,arrayTest.lista[index].apellido,arrayTest.lista[index].notas,id));
+        alumnosArray.addAlumno(new Alumno(arrayTest.lista[index].nombre,arrayTest.lista[index].apellido,arrayTest.lista[index].notas,id));
     }
 
     if(alumnosArray.getLargo()==0)
@@ -153,6 +114,11 @@ function CargarAlumnos()
         alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){  console.log('dismissed'); });
 }
 
+
+const enviarMail = document.getElementById("enviarMail");
+enviarMail.addEventListener("click", function() {
+    EnviarEmail();
+});
 
 function EnviarEmail() {
     if(alumnosArray.getLargo()==0 )
@@ -188,6 +154,12 @@ function EnviarEmail() {
     
 }
 
+
+const descargarUsuario = document.getElementById("descargarUsuario");
+descargarUsuario.addEventListener("click", function() {
+    DescargarAlumnos();
+});
+
 function DescargarAlumnos() {
     if(alumnosArray.getLargo()==0)
         return alertify.notify('No hay alumnos para guardar', 'error', 5, function(){  console.log('dismissed'); });
@@ -201,6 +173,11 @@ function DescargarAlumnos() {
     alertify.notify('Los Alumnos se descargaron correctamente', 'success', 5, function(){  console.log('dismissed'); });
     
 }
+
+const editarAlumno = document.getElementById("editarAlumno");
+editarAlumno.addEventListener("click", function() {
+    EditarAlumno();
+});
 
 function EditarAlumno()
 {
@@ -228,6 +205,12 @@ function EditarAlumno()
     }
 }
 
+
+const editarAlumnoConfirmacion = document.getElementById("editarAlumnoConfirmacion");
+editarAlumnoConfirmacion.addEventListener("click", function() {
+    EditarAlumnoConfirmacion();
+});
+
 function EditarAlumnoConfirmacion()
 {   
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
@@ -251,6 +234,12 @@ function EditarAlumnoConfirmacion()
     }
 }
 
+const EliminarAlumnos = document.getElementById("EliminarAlumnos");
+EliminarAlumnos.addEventListener("click", function() {
+    EliminarAlumno();
+});
+
+
 function EliminarAlumno()
 {
     if(alumnosArray.getLargo()==0 )
@@ -273,11 +262,40 @@ function EliminarAlumno()
     }
 }
 
+function LimpiarCampos()
+{
+    document.getElementById("idAlumnoCampo").value= "";
+    document.getElementById("inputText").value= "";
+    document.getElementById("inputText1").value= "";
+    document.getElementById("inputText2").value = "";
+}
+
+function ValidarCampos()
+{
+    var regName = /^[ a-zA-Z\-\’]+$/;
+    var nombre = document.getElementById('inputText').value;
+    var apellido = document.getElementById('inputText1').value;
+    var nota = parseInt(document.getElementById('inputText2').value);
+    if(!regName.test(nombre))
+        return alertify.alert('Error','Ingrese un nombre correcto');
+    if(!regName.test(apellido))
+        return alertify.alert('Error','Ingrese un apellido correcto');
+    if(!(nota>= 1 && nota<=10))
+        return alertify.alert('Error','Ingrese una nota correcta');
+        
+    return 1;
+}
+
 function CambiarNavPag(string)
 {
     document.getElementById("TituloPagina").textContent = string;
 }
 
+
+const btnCargar = document.getElementById("btnCargar");
+btnCargar.addEventListener("click", function() {
+    PaginaCargar();
+});
 
 function PaginaCargar()
 {
@@ -285,11 +303,21 @@ function PaginaCargar()
     CambiarNavPag("Cargar Usuarios");
 }
 
+const btnEditar = document.getElementById("btnEditar");
+btnEditar.addEventListener("click", function() {
+    PaginaEditar();
+});
+
 function PaginaEditar()
 {
     MostrarElementos(1);
     CambiarNavPag("Editar Usuarios");
 }
+
+const btnEliminar = document.getElementById("btnEliminar");
+btnEliminar.addEventListener("click", function() {
+    PaginaEliminar();
+});
 
 function PaginaEliminar()
 {   
@@ -297,16 +325,15 @@ function PaginaEliminar()
     CambiarNavPag("Eliminar Usuarios");
 }
 
+const btnEnviar = document.getElementById("btnEnviar");
+btnEnviar.addEventListener("click", function() {
+    PaginaEnviar();
+});
+
 function PaginaEnviar()
 {
     MostrarElementos(3);
     CambiarNavPag("Enviar Usuarios");
-}
-
-function PaginaOtros()
-{
-    MostrarElementos(4);
-    CambiarNavPag("Otros");
 }
 
 function MostrarElementos(dato)
@@ -314,9 +341,6 @@ function MostrarElementos(dato)
     LimpiarCampos();
     document.getElementById("editarAlumno").style.display = "none";
     document.getElementById("agregarAlumnos").style.display = "none";
-    document.getElementById("bestAlumno").style.display = "none";
-    document.getElementById("worstAlumno").style.display = "none";
-    document.getElementById("prodNotas").style.display = "none";
     document.getElementById("guardarAlumnos").style.display = "none";
     document.getElementById("cargarAlumnos").style.display = "none";
     document.getElementById("hardcodearAlumnos").style.display = "none";
@@ -368,11 +392,6 @@ function MostrarElementos(dato)
 
         document.getElementById("mailAlumnoTexto").textContent = "Ingresar mail para enviar";
         document.getElementById("mailAlumnoCampo").style.display  = "inline";
-    }else if(dato==4)//otros
-    {
-        document.getElementById("bestAlumno").style.display = "inline";
-        document.getElementById("worstAlumno").style.display = "inline";
-        document.getElementById("prodNotas").style.display = "inline";
     }
 }
 
@@ -387,91 +406,3 @@ function ActivarCamposAgregarAlumno()
     document.getElementById("inputText2").style.display  = "inline"; 
 }
 
-
-//EventListeners
-
-const btnCargar = document.getElementById("btnCargar");
-btnCargar.addEventListener("click", function() {
-    PaginaCargar();
-});
-
-const btnEditar = document.getElementById("btnEditar");
-btnEditar.addEventListener("click", function() {
-    PaginaEditar();
-});
-
-const btnEliminar = document.getElementById("btnEliminar");
-btnEliminar.addEventListener("click", function() {
-    PaginaEliminar();
-});
-
-const btnEnviar = document.getElementById("btnEnviar");
-btnEnviar.addEventListener("click", function() {
-    PaginaEnviar();
-});
-
-const agregarAlumnos = document.getElementById("agregarAlumnos");
-agregarAlumnos.addEventListener("click", function() {
-    AgregarAlumno();
-});
-
-const editarAlumno = document.getElementById("editarAlumno");
-editarAlumno.addEventListener("click", function() {
-    EditarAlumno();
-});
-
-const editarAlumnoConfirmacion = document.getElementById("editarAlumnoConfirmacion");
-editarAlumnoConfirmacion.addEventListener("click", function() {
-    EditarAlumnoConfirmacion();
-});
-
-const EliminarAlumnos = document.getElementById("EliminarAlumnos");
-EliminarAlumnos.addEventListener("click", function() {
-    EliminarAlumno();
-});
-
-const mostrarAlumnos = document.getElementById("mostrarAlumnos");
-mostrarAlumnos.addEventListener("click", function() {
-    MostrarAlumnosHtml();
-});
-
-const bestAlumno = document.getElementById("bestAlumno");
-bestAlumno.addEventListener("click", function() {
-    EncontrarMejorAlumno();
-});
-
-const worstAlumno = document.getElementById("worstAlumno");
-worstAlumno.addEventListener("click", function() {
-    EncontrarPeorAlumno();
-});
-
-const prodNotas = document.getElementById("prodNotas");
-prodNotas.addEventListener("click", function() {
-    PromedioDeNotas();
-});
-
-const guardarAlumnos = document.getElementById("guardarAlumnos");
-guardarAlumnos.addEventListener("click", function() {
-    GuardarAlumnos();
-});
-
-const cargarAlumnos = document.getElementById("cargarAlumnos");
-cargarAlumnos.addEventListener("click", function() {
-    CargarAlumnos();
-});
-
-
-const hardcodearAlumnos = document.getElementById("hardcodearAlumnos");
-hardcodearAlumnos.addEventListener("click", function() {
-    HardcodeAlumnos();
-});
-
-const enviarMail = document.getElementById("enviarMail");
-enviarMail.addEventListener("click", function() {
-    EnviarEmail();
-});
-
-const descargarUsuario = document.getElementById("descargarUsuario");
-descargarUsuario.addEventListener("click", function() {
-    DescargarAlumnos();
-});
