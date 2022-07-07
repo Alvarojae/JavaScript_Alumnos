@@ -5,7 +5,6 @@ let id =0;
 //Funciones
 MostrarElementos(0);
 
-
 const agregarAlumnos = document.getElementById("agregarAlumnos");
 agregarAlumnos.addEventListener("click", function() {
     AgregarAlumno();
@@ -20,13 +19,11 @@ function AgregarAlumno()
     if(ValidarCampos() == 1)
     {
         id++;
-        alumnosArray.addAlumno(new Alumno(nombre,apellido,notas,id))
-
+        alumnosArray.addAlumno(new Alumno(nombre,apellido,notas,id));
         alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){  console.log('dismissed'); });
         LimpiarCampos();
     }
 }
-
 
 function MostrarAlumnos()
 {
@@ -50,14 +47,6 @@ function MostrarAlumnosHtml()
 
     document.getElementById("resultado").innerHTML = MostrarAlumnos();
 }
-
-
-
-
-
-
-
-
 
 const hardcodearAlumnos = document.getElementById("hardcodearAlumnos");
 hardcodearAlumnos.addEventListener("click", function() {
@@ -114,7 +103,6 @@ function CargarAlumnos()
         alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){  console.log('dismissed'); });
 }
 
-
 const enviarMail = document.getElementById("enviarMail");
 enviarMail.addEventListener("click", function() {
     EnviarEmail();
@@ -151,7 +139,6 @@ function EnviarEmail() {
     {
         alertify.alert('Error','se cancelo la enviacion del mail');
     }
-    
 }
 
 
