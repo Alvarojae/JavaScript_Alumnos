@@ -20,7 +20,7 @@ function AgregarAlumno()
     {
         id++;
         alumnosArray.addAlumno(new Alumno(nombre,apellido,notas,id));
-        alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){  console.log('dismissed'); });
+        alertify.notify('Se ingreso el alumno correctamente', 'success', 5, function(){});
         LimpiarCampos();
     }
 }
@@ -43,7 +43,7 @@ mostrarAlumnos.addEventListener("click", function() {
 function MostrarAlumnosHtml()
 {
     if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){});
 
     document.getElementById("resultado").innerHTML = MostrarAlumnos();
 }
@@ -76,12 +76,12 @@ guardarAlumnos.addEventListener("click", function() {
 function GuardarAlumnos()
 {
     if(alumnosArray.getLargo()==0)
-        return alertify.notify('No hay alumnos para guardar' , 'error', 5, function(){  console.log(err); });
+        return alertify.notify('No hay alumnos para guardar' , 'error', 5, function(){ });
 
     const myJSON = JSON.stringify(alumnosArray);
     localStorage.setItem("Alumnos",myJSON);
     console.log(myJSON);
-    alertify.notify('Se guardo correctamente', 'success', 5, function(){  console.log('dismissed'); });
+    alertify.notify('Se guardo correctamente', 'success', 5, function(){});
 }
 
 const cargarAlumnos = document.getElementById("cargarAlumnos");
@@ -92,15 +92,20 @@ cargarAlumnos.addEventListener("click", function() {
 function CargarAlumnos()
 {
     const arrayTest = JSON.parse(localStorage.getItem("Alumnos"));
+
+    if(arrayTest == null)
+        return alertify.alert('Error','No hay alumnos guardados en local storage, Primero se deben guardar alumnos en el menu Enviar/Guardar Alumnos');
+
+
     for (let index = 0; index < arrayTest.lista.length; index++) {
         id++;
         alumnosArray.addAlumno(new Alumno(arrayTest.lista[index].nombre,arrayTest.lista[index].apellido,arrayTest.lista[index].notas,id));
     }
 
     if(alumnosArray.getLargo()==0)
-        alertify.notify('Error cargando lo alumnos' , 'error', 5, function(){  console.log(err); });  
+        alertify.notify('Error cargando lo alumnos' , 'error', 5, function(){   });  
     else
-        alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){  console.log('dismissed'); });
+        alertify.notify('Carga de Alumnos exitosa', 'success', 5, function(){   });
 }
 
 const enviarMail = document.getElementById("enviarMail");
@@ -110,10 +115,10 @@ enviarMail.addEventListener("click", function() {
 
 function EnviarEmail() {
     if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos para enviar', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos para enviar', 'error', 5, function(){   });
 
     if(document.getElementById("mailAlumnoCampo").value == "")
-        return alertify.notify('No se completo la casilla "Ingresar mail"', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No se completo la casilla "Ingresar mail"', 'error', 5, function(){  });
 
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
 
@@ -128,7 +133,7 @@ function EnviarEmail() {
                 send_to: document.getElementById("mailAlumnoCampo").value,
                 })
                 .then(() => {
-                    alertify.notify('Mail enviado correctamente', 'success', 5, function(){  console.log('dismissed'); });
+                    alertify.notify('Mail enviado correctamente', 'success', 5, function(){  });
                     MostrarElementos(3);
                 },(err) => {
                     alertify.notify('Error Enviando el Mail' , 'error', 5, function(){  console.log(err); });
@@ -149,7 +154,7 @@ descargarUsuario.addEventListener("click", function() {
 
 function DescargarAlumnos() {
     if(alumnosArray.getLargo()==0)
-        return alertify.notify('No hay alumnos para guardar', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos para guardar', 'error', 5, function(){  });
   
     const jsonTest = MostrarAlumnos();
     var a = document.createElement("a");
@@ -157,7 +162,7 @@ function DescargarAlumnos() {
     a.href = URL.createObjectURL(file);
     a.download = "inventory.json";
     a.click();
-    alertify.notify('Los Alumnos se descargaron correctamente', 'success', 5, function(){  console.log('dismissed'); });
+    alertify.notify('Los Alumnos se descargaron correctamente', 'success', 5, function(){  });
     
 }
 
@@ -169,7 +174,7 @@ editarAlumno.addEventListener("click", function() {
 function EditarAlumno()
 {
     if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  });
 
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
     if(alumnoAux>=0)
@@ -230,7 +235,7 @@ EliminarAlumnos.addEventListener("click", function() {
 function EliminarAlumno()
 {
     if(alumnosArray.getLargo()==0 )
-        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){  console.log('dismissed'); });
+        return alertify.notify('No hay alumnos cargados', 'error', 5, function(){});
 
     let alumnoAux = alumnosArray.getIndex(parseInt(document.getElementById("idAlumnoCampo").value));
     if(alumnoAux>=0)
